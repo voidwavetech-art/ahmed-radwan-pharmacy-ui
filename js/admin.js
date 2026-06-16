@@ -56,6 +56,7 @@ let deleteIndex = -1;
 document.addEventListener('DOMContentLoaded', () => {
   renderTable();
   updateStats();
+  renderComplaints();
 
   // ========================
   // Search & Filter
@@ -258,3 +259,68 @@ function showAdminToast(title, msg) {
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
+
+// ========================
+// Complaints Management
+// ========================
+function getComplaints() {
+  return JSON.parse(localStorage.getItem('pharmacy_complaints') || '[]');
+}
+
+function renderComplaints() {
+  const complaints = getComplaints();
+  const list = document.getElementById('complaintsList');
+  const empty = document.getElementById('complaintsEmpty');
+  const count = document.getElementById('complaintsCount');
+
+  count.textContent = complaints.length;
+
+  if (complaints.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'flex';
+    return;
+  }
+
+  empty.style.display = 'none';
+
+  list.innerHTML = complaints.map((c, i) => `
+    <div class="complaint-card ${c.read ? '' : 'unread'}">
+      <div class="complaint-card-icon">
+        <i class="ph ph-megaphone"></i>
+      </div>
+      <div class="complaint-card-body">
+        <span class="complaint-card-type">${c.type}</span>
+        <p class="complaint-card-desc">${c.desc}</p>
+        <span class="complaint-card-date"><i class="ph ph-clock"></i> ${c.date}</span>
+      </div>
+      <div class="complaint-card-actions">
+        ${!c.read ? `<button class="action-btn" onclick="markRead(${i})" title="تم الاطلاع"><i class="ph ph-check"></i></button>` : ''}
+        <button class="action-btn delete" onclick="deleteComplaint(${i})" title="حذف"><i class="ph ph-trash-simple"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function markRead(index) {
+  const complaints = getComplaints();
+  complaints[index].read = true;
+  localStorage.setItem('pharmacy_complaints', JSON.stringify(complaints));
+  renderComplaints();
+}
+
+function deleteComplaint(index) {
+  const complaints = getComplaints();
+  complaints.splice(index, 1);
+  localStorage.setItem('pharmacy_complaints', JSON.stringify(complaints));
+  renderComplaints();
+  showAdminToast('تم الحذف!', 'تم حذف الشكوى بنجاح.');
+}
+
+// Clear all complaints button
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('clearAllComplaints').addEventListener('click', () => {
+    localStorage.setItem('pharmacy_complaints', '[]');
+    renderComplaints();
+    showAdminToast('تم الحذف!', 'تم حذف جميع الشكاوى.');
+  });
+});

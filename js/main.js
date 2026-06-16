@@ -7,32 +7,37 @@ let cart = [];
 // Product Icon/Color Map
 // ========================
 const CATEGORY_STYLE = {
-  pain:        { icon: 'ph-pill', color: 'var(--primary)' },
-  stomach:     { icon: 'ph-flask', color: 'var(--warning)' },
-  vitamins:    { icon: 'ph-leaf', color: 'var(--success)' },
-  skincare:    { icon: 'ph-drop', color: '#E879A0' },
-  antibiotics: { icon: 'ph-prescription', color: '#6366F1' },
-  allergy:     { icon: 'ph-flower-lotus', color: '#EC4899' }
+  pain:        { icon: 'ph-pill', color: 'var(--primary)', bg: 'linear-gradient(135deg, #E8F5E0, #C8E6B8)' },
+  stomach:     { icon: 'ph-flask', color: 'var(--warning)', bg: 'linear-gradient(135deg, #FFF3E0, #FFE0B2)' },
+  vitamins:    { icon: 'ph-leaf', color: 'var(--success)', bg: 'linear-gradient(135deg, #E0F2F1, #B2DFDB)' },
+  skincare:    { icon: 'ph-drop', color: '#E879A0', bg: 'linear-gradient(135deg, #FCE4EC, #F8BBD0)' },
+  antibiotics: { icon: 'ph-prescription', color: '#6366F1', bg: 'linear-gradient(135deg, #EDE7F6, #D1C4E9)' },
+  allergy:     { icon: 'ph-flower-lotus', color: '#EC4899', bg: 'linear-gradient(135deg, #FDE7F0, #F9BCD8)' }
 };
+
+const VISIBLE_COUNT = 8;
 
 function loadProducts() {
   const stored = localStorage.getItem('pharmacy_products');
-  if (!stored) return; // keep the hardcoded HTML if no admin changes yet
+  if (!stored) return;
 
   const products = JSON.parse(stored);
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
 
-  grid.innerHTML = products.map(p => {
+  grid.innerHTML = products.map((p, i) => {
     const style = CATEGORY_STYLE[p.category] || CATEGORY_STYLE.pain;
     const badgeHtml = p.badge
       ? `<div class="product-badge" ${p.badge === 'متوفر' ? 'style="background-color: var(--success);"' : ''}>${p.badge}</div>`
       : '';
+    const hiddenClass = i >= VISIBLE_COUNT ? ' extra-product' : '';
 
     return `
-      <div class="product-card" data-category="${p.category}">
+      <div class="product-card${hiddenClass}" data-category="${p.category}" style="${i >= VISIBLE_COUNT ? 'display:none;' : ''}">
         ${badgeHtml}
-        <div class="product-icon" style="color: ${style.color};"><i class="ph ${style.icon}"></i></div>
+        <div class="product-img" style="background: ${style.bg};">
+          <i class="ph ${style.icon}" style="color: ${style.color};"></i>
+        </div>
         <h4 class="font-en">${p.name}</h4>
         <p class="product-desc">${p.desc}</p>
         <div class="product-footer">
@@ -42,6 +47,16 @@ function loadProducts() {
       </div>
     `;
   }).join('');
+
+  // Add "Show More" button if needed
+  const showMoreContainer = document.getElementById('showMoreContainer');
+  if (showMoreContainer) {
+    if (products.length > VISIBLE_COUNT) {
+      showMoreContainer.style.display = 'flex';
+    } else {
+      showMoreContainer.style.display = 'none';
+    }
+  }
 }
 
 // ========================
@@ -50,6 +65,19 @@ function loadProducts() {
 document.addEventListener('DOMContentLoaded', () => {
   // Load products from localStorage (admin managed)
   loadProducts();
+
+  // Show More button
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      document.querySelectorAll('.extra-product').forEach(card => {
+        card.style.display = '';
+        card.classList.remove('extra-product');
+      });
+      document.getElementById('showMoreContainer').style.display = 'none';
+    });
+  }
+
   const navbar = document.querySelector('.navbar');
 
   // Sticky navbar shadow
@@ -297,12 +325,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const type = document.getElementById('complaintType').value;
     const desc = document.getElementById('complaintDesc').value;
 
-    let message = `⚠️ *شكوى / اقتراح جديد*\n\n`;
-    message += `📋 *النوع:* ${type}\n`;
-    message += `\n━━━━━━━━━━━━━━\n`;
-    message += `📝 *التفاصيل:*\n${desc}`;
-
-    window.open(`https://wa.me/201556728869?text=${encodeURIComponent(message)}`, '_blank');
+    // Save to localStorage for admin to see
+    const complaints = JSON.parse(localStorage.getItem('pharmacy_complaints') || '[]');
+    complaints.push({
+      type,
+      desc,
+      date: new Date().toLocaleString('ar-EG'),
+      read: false
+    });
+    localStorage.setItem('pharmacy_complaints', JSON.stringify(complaints));
 
     closeComplaintModal();
     complaintForm.reset();

@@ -399,3 +399,112 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===================== */
+/* Complaints Section    */
+/* ===================== */
+.complaints-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--error);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-full);
+  padding: 0 0.4rem;
+  margin-right: 0.35rem;
+  font-family: var(--font-english);
+}
+
+.complaints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.complaint-card {
+  background-color: white;
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  border: 1px solid var(--neutral-100);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 1rem;
+  animation: cartItemIn 0.3s ease;
+}
+
+.complaint-card.unread {
+  border-right: 4px solid var(--error);
+}
+
+.complaint-card-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.complaint-card-body {
+  flex: 1;
+}
+
+.complaint-card-type {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(239, 68, 68, 0.08);
+  color: var(--error);
+  margin-bottom: 0.5rem;
+}
+
+.complaint-card-desc {
+  font-size: 0.9rem;
+  color: var(--neutral-800);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.complaint-card-date {
+  font-size: 0.8rem;
+  color: var(--neutral-600);
+}
+
+.complaint-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.complaints-empty {
+  background-color: white;
+  border-radius: var(--radius-2xl);
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px solid var(--neutral-100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.complaints-empty p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+}
+
+.complaints-empty span {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
+}

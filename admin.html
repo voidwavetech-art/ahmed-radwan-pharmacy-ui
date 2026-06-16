@@ -136,6 +136,24 @@
         </div>
       </div>
 
+      <!-- Complaints Section -->
+      <div class="admin-toolbar" style="margin-top: 3rem;">
+        <h2><i class="ph ph-megaphone"></i> الشكاوى والاقتراحات <span class="complaints-count" id="complaintsCount">0</span></h2>
+        <button class="btn btn-outline" id="clearAllComplaints" style="font-size: 0.9rem; padding: 0.55rem 1.25rem; color: var(--error); border-color: var(--error);">
+          <i class="ph ph-trash"></i>
+          حذف الكل
+        </button>
+      </div>
+
+      <div id="complaintsContainer">
+        <div class="complaints-empty" id="complaintsEmpty" style="display: none;">
+          <i class="ph ph-checks" style="font-size: 3.5rem; color: var(--neutral-100);"></i>
+          <p>لا توجد شكاوى حالياً</p>
+          <span>كل شيء على ما يرام!</span>
+        </div>
+        <div class="complaints-list" id="complaintsList"></div>
+      </div>
+
     </div>
   </main>
 
