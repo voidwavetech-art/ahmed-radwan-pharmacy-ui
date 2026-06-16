@@ -4,10 +4,10 @@
   --primary: #5EA32B;
   --primary-dark: #457A20;
 
-  /* Colors - Secondary (Brown/Gold) */
-  --secondary-light: #D4B89A;
-  --secondary: #B38B5D;
-  --secondary-dark: #8C6741;
+  /* Colors - Secondary (Lighter Green) */
+  --secondary-light: rgba(94, 163, 43, 0.15);
+  --secondary: #5EA32B;
+  --secondary-dark: #457A20;
 
   /* Colors - Neutral */
   --neutral-50: #F9FAFB;
@@ -167,6 +167,13 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.logo-img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
 }
 
 .nav-links {
