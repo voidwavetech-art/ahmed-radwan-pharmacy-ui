@@ -250,14 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
   complaintForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('complainantName').value;
-    const phone = document.getElementById('complainantPhone').value;
     const type = document.getElementById('complaintType').value;
     const desc = document.getElementById('complaintDesc').value;
 
     let message = `⚠️ *شكوى / اقتراح جديد*\n\n`;
-    message += `👤 *الاسم:* ${name}\n`;
-    message += `📞 *الهاتف:* ${phone}\n`;
     message += `📋 *النوع:* ${type}\n`;
     message += `\n━━━━━━━━━━━━━━\n`;
     message += `📝 *التفاصيل:*\n${desc}`;
