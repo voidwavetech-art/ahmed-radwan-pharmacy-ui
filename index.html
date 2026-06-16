@@ -39,9 +39,10 @@
           <i class="ph ph-whatsapp-logo" style="font-size: 1.25rem;"></i>
           <span>واتساب</span>
         </a>
-        <button class="btn btn-primary" style="font-size: 1rem; padding: 0.75rem 1.5rem;">
+        <button class="btn btn-primary" id="openCart" style="font-size: 1rem; padding: 0.75rem 1.5rem; position: relative;">
           <i class="ph ph-shopping-cart" style="font-size: 1.25rem;"></i>
           اطلب الآن
+          <span class="cart-badge" id="cartBadge">0</span>
         </button>
       </div>
     </div>
@@ -530,6 +531,47 @@
     <div class="toast-content">
       <strong>تمت الإضافة!</strong>
       <p>تم إضافة المنتج إلى السلة.</p>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-sidebar">
+      <div class="cart-header">
+        <div class="flex items-center gap-2">
+          <i class="ph ph-shopping-cart" style="font-size: 1.5rem; color: var(--primary);"></i>
+          <h3>سلة المشتريات</h3>
+        </div>
+        <button class="modal-close" id="closeCart">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+
+      <div class="cart-body" id="cartBody">
+        <!-- Empty State -->
+        <div class="cart-empty" id="cartEmpty">
+          <i class="ph ph-shopping-bag" style="font-size: 4rem; color: var(--neutral-100);"></i>
+          <p>السلة فارغة</p>
+          <span>أضف منتجات من قسم العروض</span>
+        </div>
+        <!-- Cart items will be injected here -->
+        <div class="cart-items" id="cartItems"></div>
+      </div>
+
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-total">
+          <span>الإجمالي:</span>
+          <span class="cart-total-price font-en" id="cartTotal">0 EGP</span>
+        </div>
+        <button class="btn btn-primary" id="sendOrder" style="width: 100%; padding: 0.875rem; font-size: 1rem;">
+          <i class="ph ph-whatsapp-logo" style="font-size: 1.25rem;"></i>
+          أرسل الطلب عبر واتساب
+        </button>
+        <button class="btn btn-outline" id="clearCart" style="width: 100%; padding: 0.75rem; font-size: 0.9rem; color: var(--error); border-color: var(--error);">
+          <i class="ph ph-trash"></i>
+          تفريغ السلة
+        </button>
+      </div>
     </div>
   </div>
 
