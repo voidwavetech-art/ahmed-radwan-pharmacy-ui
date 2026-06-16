@@ -2,24 +2,24 @@
 // Default Products Data
 // ========================
 const DEFAULT_PRODUCTS = [
-  { name: 'Panadol Extra', desc: 'بانادول إكسترا - مسكن للآلام وخافض للحرارة', category: 'pain', price: 25, badge: 'الأكثر مبيعاً' },
-  { name: 'Brufen 400mg', desc: 'بروفين 400 مجم - مضاد للالتهابات ومسكن قوي', category: 'pain', price: 30, badge: '' },
-  { name: 'Cataflam 50mg', desc: 'كتافلام - مسكن سريع المفعول للآلام الحادة', category: 'pain', price: 45, badge: '' },
-  { name: 'Antinal 200mg', desc: 'أنتينال - مطهر معوي لعلاج الإسهال والتقلصات', category: 'stomach', price: 35, badge: '' },
-  { name: 'Nexium 40mg', desc: 'نيكسيوم - لعلاج حموضة المعدة وارتجاع المريء', category: 'stomach', price: 120, badge: '' },
-  { name: 'Motilium 10mg', desc: 'موتيليوم - لعلاج الغثيان والقيء وعسر الهضم', category: 'stomach', price: 40, badge: '' },
-  { name: 'Vitamin C 1000mg', desc: 'فيتامين سي - لتعزيز المناعة ومقاومة نزلات البرد', category: 'vitamins', price: 60, badge: 'متوفر' },
-  { name: 'Centrum Silver', desc: 'سنتروم سيلفر - فيتامينات متعددة للبالغين فوق 50', category: 'vitamins', price: 350, badge: '' },
-  { name: 'Omega-3 Fish Oil', desc: 'أوميجا 3 - لصحة القلب والأوعية الدموية والمفاصل', category: 'vitamins', price: 180, badge: '' },
-  { name: 'CeraVe Moisturizer', desc: 'سيرافي - مرطب يومي للبشرة الجافة والحساسة', category: 'skincare', price: 450, badge: '' },
-  { name: 'La Roche-Posay SPF50', desc: 'لاروش بوزيه - واقي شمس بعامل حماية عالي', category: 'skincare', price: 520, badge: '' },
-  { name: 'Bioderma Sensibio', desc: 'بيوديرما - ماء ميسيلار لتنظيف البشرة الحساسة', category: 'skincare', price: 380, badge: '' },
-  { name: 'Augmentin 1g', desc: 'أوجمنتين - مضاد حيوي واسع المجال للعدوى البكتيرية', category: 'antibiotics', price: 95, badge: '' },
-  { name: 'Flagyl 500mg', desc: 'فلاجيل - مضاد للبكتيريا والطفيليات والعدوى اللاهوائية', category: 'antibiotics', price: 28, badge: '' },
-  { name: 'Zithromax 500mg', desc: 'زيثروماكس - مضاد حيوي لعلاج التهابات الجهاز التنفسي', category: 'antibiotics', price: 75, badge: '' },
-  { name: 'Telfast 180mg', desc: 'تلفاست - لعلاج أعراض الحساسية والعطس والرشح', category: 'allergy', price: 55, badge: '' },
-  { name: 'Zyrtec 10mg', desc: 'زيرتك - مضاد للحساسية سريع المفعول بدون نعاس', category: 'allergy', price: 65, badge: '' },
-  { name: 'Avamys Nasal Spray', desc: 'أفاميس - بخاخ أنف لعلاج التهاب الأنف التحسسي', category: 'allergy', price: 110, badge: '' },
+  { name: 'Panadol Extra', desc: 'بانادول إكسترا - مسكن للآلام وخافض للحرارة', category: 'pain', price: 25, badge: 'الأكثر مبيعاً', image: 'images/panadol-extra-tab-01762260859.webp' },
+  { name: 'Brufen 400mg', desc: 'بروفين 400 مجم - مضاد للالتهابات ومسكن قوي', category: 'pain', price: 30, badge: '', image: 'images/brufen-400mg-30-tablets-x0m6-01721234522.webp' },
+  { name: 'Cataflam 50mg', desc: 'كتافلام - مسكن سريع المفعول للآلام الحادة', category: 'pain', price: 45, badge: '', image: 'images/cataflam-50-mg-tab-01723552610.webp' },
+  { name: 'Antinal 200mg', desc: 'أنتينال - مطهر معوي لعلاج الإسهال والتقلصات', category: 'stomach', price: 35, badge: '', image: '' },
+  { name: 'Nexium 40mg', desc: 'نيكسيوم - لعلاج حموضة المعدة وارتجاع المريء', category: 'stomach', price: 120, badge: '', image: 'images/nexium-40-mg-28-tab-u0yk-01666699935.webp' },
+  { name: 'Motilium 10mg', desc: 'موتيليوم - لعلاج الغثيان والقيء وعسر الهضم', category: 'stomach', price: 40, badge: '', image: '' },
+  { name: 'Vitamin C 1000mg', desc: 'فيتامين سي - لتعزيز المناعة ومقاومة نزلات البرد', category: 'vitamins', price: 60, badge: 'متوفر', image: '' },
+  { name: 'Centrum Silver', desc: 'سنتروم سيلفر - فيتامينات متعددة للبالغين فوق 50', category: 'vitamins', price: 350, badge: '', image: '' },
+  { name: 'Omega-3 Fish Oil', desc: 'أوميجا 3 - لصحة القلب والأوعية الدموية والمفاصل', category: 'vitamins', price: 180, badge: '', image: '' },
+  { name: 'CeraVe Moisturizer', desc: 'سيرافي - مرطب يومي للبشرة الجافة والحساسة', category: 'skincare', price: 450, badge: '', image: 'images/cerave-moisturizing-cream-177g-tube-mnco-01723386479.webp' },
+  { name: 'La Roche-Posay SPF50', desc: 'لاروش بوزيه - واقي شمس بعامل حماية عالي', category: 'skincare', price: 520, badge: '', image: 'images/anthelios-ultra-spf50-senza-profumo-50-ml-tpri-01648214702.webp' },
+  { name: 'Bioderma Sensibio', desc: 'بيوديرما - ماء ميسيلار لتنظيف البشرة الحساسة', category: 'skincare', price: 380, badge: '', image: '' },
+  { name: 'Augmentin 1g', desc: 'أوجمنتين - مضاد حيوي واسع المجال للعدوى البكتيرية', category: 'antibiotics', price: 95, badge: '', image: '' },
+  { name: 'Flagyl 500mg', desc: 'فلاجيل - مضاد للبكتيريا والطفيليات والعدوى اللاهوائية', category: 'antibiotics', price: 28, badge: '', image: '' },
+  { name: 'Zithromax 500mg', desc: 'زيثروماكس - مضاد حيوي لعلاج التهابات الجهاز التنفسي', category: 'antibiotics', price: 75, badge: '', image: '' },
+  { name: 'Telfast 180mg', desc: 'تلفاست - لعلاج أعراض الحساسية والعطس والرشح', category: 'allergy', price: 55, badge: '', image: '' },
+  { name: 'Zyrtec 10mg', desc: 'زيرتك - مضاد للحساسية سريع المفعول بدون نعاس', category: 'allergy', price: 65, badge: '', image: '' },
+  { name: 'Avamys Nasal Spray', desc: 'أفاميس - بخاخ أنف لعلاج التهاب الأنف التحسسي', category: 'allergy', price: 110, badge: '', image: '' },
 ];
 
 const CATEGORY_LABELS = {
@@ -40,7 +40,13 @@ function getProducts() {
     localStorage.setItem('pharmacy_products', JSON.stringify(DEFAULT_PRODUCTS));
     return [...DEFAULT_PRODUCTS];
   }
-  return JSON.parse(stored);
+  // Migrate: if stored data lacks `image` field, reset to defaults
+  const parsed = JSON.parse(stored);
+  if (parsed.length > 0 && !('image' in parsed[0])) {
+    localStorage.setItem('pharmacy_products', JSON.stringify(DEFAULT_PRODUCTS));
+    return [...DEFAULT_PRODUCTS];
+  }
+  return parsed;
 }
 
 function saveProducts(products) {
@@ -87,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: document.getElementById('prodDesc').value.trim(),
       category: document.getElementById('prodCategory').value,
       price: parseInt(document.getElementById('prodPrice').value),
-      badge: document.getElementById('prodBadge').value.trim()
+      badge: document.getElementById('prodBadge').value.trim(),
+      image: document.getElementById('prodImage').value.trim()
     };
 
     if (index === -1) {
@@ -206,6 +213,7 @@ function editProduct(index) {
   document.getElementById('prodCategory').value = p.category;
   document.getElementById('prodPrice').value = p.price;
   document.getElementById('prodBadge').value = p.badge || '';
+  document.getElementById('prodImage').value = p.image || '';
 
   document.getElementById('modalTitle').textContent = 'تعديل المنتج';
   document.getElementById('modalSubtitle').textContent = `تعديل بيانات "${p.name}"`;

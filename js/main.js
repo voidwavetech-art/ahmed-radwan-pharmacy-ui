@@ -32,12 +32,14 @@ function loadProducts() {
       : '';
     const hiddenClass = i >= VISIBLE_COUNT ? ' extra-product' : '';
 
+    const imgHtml = p.image
+      ? `<div class="product-img" style="background: ${style.bg};"><img src="${p.image}" alt="${p.name}"></div>`
+      : `<div class="product-img" style="background: ${style.bg};"><i class="ph ${style.icon}" style="color: ${style.color};"></i></div>`;
+
     return `
       <div class="product-card${hiddenClass}" data-category="${p.category}" style="${i >= VISIBLE_COUNT ? 'display:none;' : ''}">
         ${badgeHtml}
-        <div class="product-img" style="background: ${style.bg};">
-          <i class="ph ${style.icon}" style="color: ${style.color};"></i>
-        </div>
+        ${imgHtml}
         <h4 class="font-en">${p.name}</h4>
         <p class="product-desc">${p.desc}</p>
         <div class="product-footer">
