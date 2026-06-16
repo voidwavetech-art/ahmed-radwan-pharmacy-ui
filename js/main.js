@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       if (modal.classList.contains('active')) closeModal();
       if (cartOverlay.classList.contains('active')) closeCartSidebar();
+      if (orderInfoModal.classList.contains('active')) closeOrderInfoModal();
     }
   });
 
@@ -141,24 +142,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sendOrderBtn.addEventListener('click', () => {
     if (cart.length === 0) return;
+    openOrderInfoModal();
+  });
+
+  // ========================
+  // Order Info Modal
+  // ========================
+  const orderInfoModal = document.getElementById('orderInfoModal');
+  const closeOrderInfoBtn = document.getElementById('closeOrderInfo');
+  const orderInfoForm = document.getElementById('orderInfoForm');
+
+  function openOrderInfoModal() {
+    // Close cart sidebar first
+    closeCartSidebar();
+
+    // Populate order summary
+    const summaryItems = document.getElementById('orderSummaryItems');
+    const summaryTotal = document.getElementById('orderSummaryTotal');
+    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+    summaryItems.innerHTML = cart.map(item => `
+      <div class="order-summary-item">
+        <div>
+          <span class="order-summary-item-name font-en">${item.name}</span>
+          <span class="order-summary-item-qty"> × ${item.qty}</span>
+        </div>
+        <span class="order-summary-item-price font-en">${item.price * item.qty} EGP</span>
+      </div>
+    `).join('');
+    summaryTotal.textContent = `${total} EGP`;
+
+    // Open modal
+    orderInfoModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOrderInfoModal() {
+    orderInfoModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  closeOrderInfoBtn.addEventListener('click', closeOrderInfoModal);
+  orderInfoModal.addEventListener('click', (e) => { if (e.target === orderInfoModal) closeOrderInfoModal(); });
+
+  orderInfoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('customerName').value;
+    const phone = document.getElementById('customerPhone').value;
+    const address = document.getElementById('customerAddress').value;
+    const landmark = document.getElementById('customerLandmark').value;
+    const notes = document.getElementById('customerNotes').value;
 
     let orderLines = cart.map((item, i) => {
       return `${i + 1}. ${item.name} × ${item.qty} = ${item.price * item.qty} EGP`;
     });
-
     const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-    const message = `🛒 *طلب جديد من صيدلية أحمد رضوان*\n\n` +
-      orderLines.join('\n') +
-      `\n\n💰 *الإجمالي: ${total} EGP*` +
-      `\n\nشكراً لتعاملكم معنا! 🌿`;
+    let message = `🛒 *طلب جديد من صيدلية أحمد رضوان*\n\n`;
+    message += `👤 *الاسم:* ${name}\n`;
+    message += `📞 *الهاتف:* ${phone}\n`;
+    message += `📍 *العنوان:* ${address}\n`;
+    if (landmark) message += `🏢 *علامة مميزة:* ${landmark}\n`;
+    if (notes) message += `📝 *ملاحظات:* ${notes}\n`;
+    message += `\n━━━━━━━━━━━━━━\n`;
+    message += `📦 *المنتجات:*\n\n`;
+    message += orderLines.join('\n');
+    message += `\n\n💰 *الإجمالي: ${total} EGP*`;
+    message += `\n\nشكراً لتعاملكم معنا! 🌿`;
 
     window.open(`https://wa.me/201556728869?text=${encodeURIComponent(message)}`, '_blank');
 
-    // Clear cart after sending
+    // Clear everything
     cart = [];
     renderCart();
-    closeCartSidebar();
+    closeOrderInfoModal();
+    orderInfoForm.reset();
     showToast(successToast);
   });
 });

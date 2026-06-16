@@ -1324,3 +1324,72 @@ a {
     max-width: 100%;
   }
 }
+
+/* ===================== */
+/* Order Summary         */
+/* ===================== */
+.order-summary {
+  background-color: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+}
+
+.order-summary h4 {
+  font-size: 0.95rem;
+  color: var(--neutral-800);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.order-summary h4 i {
+  color: var(--primary);
+}
+
+.order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--neutral-100);
+  font-size: 0.9rem;
+}
+
+.order-summary-item:last-of-type {
+  border-bottom: none;
+}
+
+.order-summary-item-name {
+  color: var(--neutral-800);
+  font-weight: 500;
+}
+
+.order-summary-item-qty {
+  color: var(--neutral-600);
+  font-size: 0.85rem;
+}
+
+.order-summary-item-price {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.order-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--primary-light);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--neutral-800);
+}
+
+.order-summary-total span:last-child {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
