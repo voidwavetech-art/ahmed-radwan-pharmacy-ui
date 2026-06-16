@@ -409,6 +409,16 @@
               <p>مفتوح 24 ساعة - 7 أيام في الأسبوع</p>
             </div>
           </div>
+
+          <div class="contact-card" id="openComplaint" style="cursor: pointer; border-color: var(--error); border-width: 1.5px;">
+            <div class="contact-card-icon" style="background-color: rgba(239, 68, 68, 0.1); color: var(--error);">
+              <i class="ph ph-megaphone"></i>
+            </div>
+            <div>
+              <h4>تقديم شكوى</h4>
+              <p style="color: var(--error); font-weight: 500; font-size: 0.85rem;">اضغط هنا لتقديم شكوى أو اقتراح</p>
+            </div>
+          </div>
         </div>
 
         <!-- Google Maps Embed -->
@@ -627,6 +637,56 @@
         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem; background-color: #25D366; border: none;">
           <i class="ph ph-whatsapp-logo" style="font-size: 1.25rem;"></i>
           تأكيد وإرسال عبر واتساب
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Complaint Modal -->
+  <div class="modal-overlay" id="complaintModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="modal-icon" style="background-color: rgba(239, 68, 68, 0.1); color: var(--error);">
+            <i class="ph ph-megaphone"></i>
+          </div>
+          <div>
+            <h3>تقديم شكوى أو اقتراح</h3>
+            <p>رأيك يهمنا ونسعى دائماً لتحسين خدماتنا</p>
+          </div>
+        </div>
+        <button class="modal-close" id="closeComplaint">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <form id="complaintForm" class="modal-form">
+        <div class="form-group">
+          <label for="complainantName"><i class="ph ph-user"></i> الاسم الكامل</label>
+          <input type="text" id="complainantName" placeholder="أدخل اسمك الكامل" required>
+        </div>
+        <div class="form-group">
+          <label for="complainantPhone"><i class="ph ph-phone"></i> رقم الهاتف</label>
+          <input type="tel" id="complainantPhone" placeholder="01xxxxxxxxx" required>
+        </div>
+        <div class="form-group">
+          <label for="complaintType"><i class="ph ph-list-bullets"></i> نوع الرسالة</label>
+          <select id="complaintType" required>
+            <option value="" disabled selected>اختر نوع الرسالة</option>
+            <option value="شكوى من خدمة">شكوى من خدمة</option>
+            <option value="شكوى من منتج">شكوى من منتج</option>
+            <option value="تأخير توصيل">تأخير توصيل</option>
+            <option value="اقتراح تحسين">اقتراح تحسين</option>
+            <option value="ملاحظة عامة">ملاحظة عامة</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="complaintDesc"><i class="ph ph-note-pencil"></i> تفاصيل الشكوى / الاقتراح</label>
+          <textarea id="complaintDesc" rows="4" placeholder="اكتب تفاصيل شكواك أو اقتراحك بالتفصيل... ماذا حدث؟ ومتى؟" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem; background-color: var(--error); border: none;">
+          <i class="ph ph-paper-plane-tilt"></i>
+          إرسال الشكوى
         </button>
       </form>
     </div>

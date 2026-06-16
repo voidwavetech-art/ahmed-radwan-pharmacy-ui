@@ -63,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (modal.classList.contains('active')) closeModal();
       if (cartOverlay.classList.contains('active')) closeCartSidebar();
       if (orderInfoModal.classList.contains('active')) closeOrderInfoModal();
+      if (document.getElementById('complaintModal').classList.contains('active')) {
+        document.getElementById('complaintModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
     }
   });
 
@@ -218,6 +222,50 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart();
     closeOrderInfoModal();
     orderInfoForm.reset();
+    showToast(successToast);
+  });
+
+  // ========================
+  // Complaint Modal
+  // ========================
+  const complaintModal = document.getElementById('complaintModal');
+  const openComplaintBtn = document.getElementById('openComplaint');
+  const closeComplaintBtn = document.getElementById('closeComplaint');
+  const complaintForm = document.getElementById('complaintForm');
+
+  function openComplaintModal() {
+    complaintModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeComplaintModal() {
+    complaintModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  openComplaintBtn.addEventListener('click', openComplaintModal);
+  closeComplaintBtn.addEventListener('click', closeComplaintModal);
+  complaintModal.addEventListener('click', (e) => { if (e.target === complaintModal) closeComplaintModal(); });
+
+  complaintForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('complainantName').value;
+    const phone = document.getElementById('complainantPhone').value;
+    const type = document.getElementById('complaintType').value;
+    const desc = document.getElementById('complaintDesc').value;
+
+    let message = `⚠️ *شكوى / اقتراح جديد*\n\n`;
+    message += `👤 *الاسم:* ${name}\n`;
+    message += `📞 *الهاتف:* ${phone}\n`;
+    message += `📋 *النوع:* ${type}\n`;
+    message += `\n━━━━━━━━━━━━━━\n`;
+    message += `📝 *التفاصيل:*\n${desc}`;
+
+    window.open(`https://wa.me/201556728869?text=${encodeURIComponent(message)}`, '_blank');
+
+    closeComplaintModal();
+    complaintForm.reset();
     showToast(successToast);
   });
 });
