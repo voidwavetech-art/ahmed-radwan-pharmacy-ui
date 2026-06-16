@@ -56,11 +56,12 @@
         <p>نحن هنا لتقديم أفضل الخدمات الصيدلانية والاستشارات الطبية الموثوقة. نوفر لك كل ما تحتاجه من أدوية ومنتجات عناية شخصية بأعلى جودة.</p>
         
         <div class="flex gap-4">
-          <button class="btn btn-primary">
+          <a href="#offers" class="btn btn-primary">
             تصفح المنتجات
             <i class="ph ph-arrow-left"></i>
-          </button>
-          <button class="btn btn-outline">
+          </a>
+          <button class="btn btn-outline" id="openConsultation">
+            <i class="ph ph-chat-circle-dots"></i>
             استشارة طبية مجانية
           </button>
         </div>
@@ -134,6 +135,228 @@
       </div>
     </div>
   </section>
+
+  <!-- Offers / Products Section -->
+  <section id="offers" class="offers-section">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">منتجاتنا</span>
+        <h2>تصفح العروض والمنتجات</h2>
+        <p>أفضل الأدوية ومنتجات العناية بأسعار تنافسية</p>
+      </div>
+
+      <!-- Search & Filter -->
+      <div class="offers-toolbar">
+        <div class="search-box">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="text" id="productSearch" placeholder="ابحث عن منتج...">
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">الكل</button>
+          <button class="filter-btn" data-filter="pain">مسكنات</button>
+          <button class="filter-btn" data-filter="stomach">معدة وهضم</button>
+          <button class="filter-btn" data-filter="vitamins">فيتامينات</button>
+          <button class="filter-btn" data-filter="skincare">عناية بالبشرة</button>
+          <button class="filter-btn" data-filter="antibiotics">مضادات حيوية</button>
+          <button class="filter-btn" data-filter="allergy">حساسية</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+
+        <!-- Pain Relief -->
+        <div class="product-card" data-category="pain">
+          <div class="product-badge">الأكثر مبيعاً</div>
+          <div class="product-icon"><i class="ph ph-pill"></i></div>
+          <h4 class="font-en">Panadol Extra</h4>
+          <p class="product-desc">بانادول إكسترا - مسكن للآلام وخافض للحرارة</p>
+          <div class="product-footer">
+            <span class="product-price font-en">25 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="pain">
+          <div class="product-icon"><i class="ph ph-pill"></i></div>
+          <h4 class="font-en">Brufen 400mg</h4>
+          <p class="product-desc">بروفين 400 مجم - مضاد للالتهابات ومسكن قوي</p>
+          <div class="product-footer">
+            <span class="product-price font-en">30 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="pain">
+          <div class="product-icon"><i class="ph ph-pill"></i></div>
+          <h4 class="font-en">Cataflam 50mg</h4>
+          <p class="product-desc">كتافلام - مسكن سريع المفعول للآلام الحادة</p>
+          <div class="product-footer">
+            <span class="product-price font-en">45 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <!-- Stomach -->
+        <div class="product-card" data-category="stomach">
+          <div class="product-icon" style="color: var(--warning);"><i class="ph ph-flask"></i></div>
+          <h4 class="font-en">Antinal 200mg</h4>
+          <p class="product-desc">أنتينال - مطهر معوي لعلاج الإسهال والتقلصات</p>
+          <div class="product-footer">
+            <span class="product-price font-en">35 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="stomach">
+          <div class="product-icon" style="color: var(--warning);"><i class="ph ph-flask"></i></div>
+          <h4 class="font-en">Nexium 40mg</h4>
+          <p class="product-desc">نيكسيوم - لعلاج حموضة المعدة وارتجاع المريء</p>
+          <div class="product-footer">
+            <span class="product-price font-en">120 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="stomach">
+          <div class="product-icon" style="color: var(--warning);"><i class="ph ph-flask"></i></div>
+          <h4 class="font-en">Motilium 10mg</h4>
+          <p class="product-desc">موتيليوم - لعلاج الغثيان والقيء وعسر الهضم</p>
+          <div class="product-footer">
+            <span class="product-price font-en">40 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <!-- Vitamins -->
+        <div class="product-card" data-category="vitamins">
+          <div class="product-badge" style="background-color: var(--success); ">متوفر</div>
+          <div class="product-icon" style="color: var(--success);"><i class="ph ph-leaf"></i></div>
+          <h4 class="font-en">Vitamin C 1000mg</h4>
+          <p class="product-desc">فيتامين سي - لتعزيز المناعة ومقاومة نزلات البرد</p>
+          <div class="product-footer">
+            <span class="product-price font-en">60 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="vitamins">
+          <div class="product-icon" style="color: var(--success);"><i class="ph ph-leaf"></i></div>
+          <h4 class="font-en">Centrum Silver</h4>
+          <p class="product-desc">سنتروم سيلفر - فيتامينات متعددة للبالغين فوق 50</p>
+          <div class="product-footer">
+            <span class="product-price font-en">350 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="vitamins">
+          <div class="product-icon" style="color: var(--success);"><i class="ph ph-leaf"></i></div>
+          <h4 class="font-en">Omega-3 Fish Oil</h4>
+          <p class="product-desc">أوميجا 3 - لصحة القلب والأوعية الدموية والمفاصل</p>
+          <div class="product-footer">
+            <span class="product-price font-en">180 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <!-- Skincare -->
+        <div class="product-card" data-category="skincare">
+          <div class="product-icon" style="color: #E879A0;"><i class="ph ph-drop"></i></div>
+          <h4 class="font-en">CeraVe Moisturizer</h4>
+          <p class="product-desc">سيرافي - مرطب يومي للبشرة الجافة والحساسة</p>
+          <div class="product-footer">
+            <span class="product-price font-en">450 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="skincare">
+          <div class="product-icon" style="color: #E879A0;"><i class="ph ph-drop"></i></div>
+          <h4 class="font-en">La Roche-Posay SPF50</h4>
+          <p class="product-desc">لاروش بوزيه - واقي شمس بعامل حماية عالي</p>
+          <div class="product-footer">
+            <span class="product-price font-en">520 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="skincare">
+          <div class="product-icon" style="color: #E879A0;"><i class="ph ph-drop"></i></div>
+          <h4 class="font-en">Bioderma Sensibio</h4>
+          <p class="product-desc">بيوديرما - ماء ميسيلار لتنظيف البشرة الحساسة</p>
+          <div class="product-footer">
+            <span class="product-price font-en">380 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <!-- Antibiotics -->
+        <div class="product-card" data-category="antibiotics">
+          <div class="product-icon" style="color: #6366F1;"><i class="ph ph-prescription"></i></div>
+          <h4 class="font-en">Augmentin 1g</h4>
+          <p class="product-desc">أوجمنتين - مضاد حيوي واسع المجال للعدوى البكتيرية</p>
+          <div class="product-footer">
+            <span class="product-price font-en">95 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="antibiotics">
+          <div class="product-icon" style="color: #6366F1;"><i class="ph ph-prescription"></i></div>
+          <h4 class="font-en">Flagyl 500mg</h4>
+          <p class="product-desc">فلاجيل - مضاد للبكتيريا والطفيليات والعدوى اللاهوائية</p>
+          <div class="product-footer">
+            <span class="product-price font-en">28 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="antibiotics">
+          <div class="product-icon" style="color: #6366F1;"><i class="ph ph-prescription"></i></div>
+          <h4 class="font-en">Zithromax 500mg</h4>
+          <p class="product-desc">زيثروماكس - مضاد حيوي لعلاج التهابات الجهاز التنفسي</p>
+          <div class="product-footer">
+            <span class="product-price font-en">75 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <!-- Allergy -->
+        <div class="product-card" data-category="allergy">
+          <div class="product-icon" style="color: #EC4899;"><i class="ph ph-flower-lotus"></i></div>
+          <h4 class="font-en">Telfast 180mg</h4>
+          <p class="product-desc">تلفاست - لعلاج أعراض الحساسية والعطس والرشح</p>
+          <div class="product-footer">
+            <span class="product-price font-en">55 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="allergy">
+          <div class="product-icon" style="color: #EC4899;"><i class="ph ph-flower-lotus"></i></div>
+          <h4 class="font-en">Zyrtec 10mg</h4>
+          <p class="product-desc">زيرتك - مضاد للحساسية سريع المفعول بدون نعاس</p>
+          <div class="product-footer">
+            <span class="product-price font-en">65 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="allergy">
+          <div class="product-icon" style="color: #EC4899;"><i class="ph ph-flower-lotus"></i></div>
+          <h4 class="font-en">Avamys Nasal Spray</h4>
+          <p class="product-desc">أفاميس - بخاخ أنف لعلاج التهاب الأنف التحسسي</p>
+          <div class="product-footer">
+            <span class="product-price font-en">110 EGP</span>
+            <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Contact / Footer Section -->
   <section id="contact" class="contact-section">
     <div class="container">
@@ -233,6 +456,82 @@
       </div>
     </div>
   </footer>
+
+  <!-- Consultation Modal -->
+  <div class="modal-overlay" id="consultationModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="modal-icon">
+            <i class="ph ph-stethoscope"></i>
+          </div>
+          <div>
+            <h3>استشارة طبية مجانية</h3>
+            <p>أخبرنا بمشكلتك وسيتواصل معك الدكتور أحمد رضوان</p>
+          </div>
+        </div>
+        <button class="modal-close" id="closeModal">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <form id="consultationForm" class="modal-form">
+        <div class="form-group">
+          <label for="patientName"><i class="ph ph-user"></i> الاسم الكامل</label>
+          <input type="text" id="patientName" placeholder="أدخل اسمك الكامل" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="patientPhone"><i class="ph ph-phone"></i> رقم الهاتف</label>
+            <input type="tel" id="patientPhone" placeholder="01xxxxxxxxx" required>
+          </div>
+          <div class="form-group">
+            <label for="patientAge"><i class="ph ph-calendar"></i> العمر</label>
+            <input type="number" id="patientAge" placeholder="العمر" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="problemType"><i class="ph ph-first-aid"></i> نوع المشكلة</label>
+          <select id="problemType" required>
+            <option value="" disabled selected>اختر نوع المشكلة</option>
+            <option value="general">استشارة عامة</option>
+            <option value="chronic">أمراض مزمنة (سكر / ضغط)</option>
+            <option value="skin">مشاكل جلدية</option>
+            <option value="stomach">مشاكل في المعدة والهضم</option>
+            <option value="respiratory">مشاكل في الجهاز التنفسي</option>
+            <option value="bones">آلام العظام والمفاصل</option>
+            <option value="children">طب أطفال</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="problemDesc"><i class="ph ph-note-pencil"></i> وصف المشكلة</label>
+          <textarea id="problemDesc" rows="4" placeholder="اوصف مشكلتك الصحية بالتفصيل... متى بدأت؟ ما هي الأعراض؟ هل تتناول أدوية حالياً؟" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;">
+          <i class="ph ph-paper-plane-tilt"></i>
+          إرسال الاستشارة
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Toast -->
+  <div class="toast" id="successToast">
+    <div class="toast-icon"><i class="ph ph-check-circle"></i></div>
+    <div class="toast-content">
+      <strong>تم الإرسال بنجاح!</strong>
+      <p>سيتواصل معك الدكتور أحمد رضوان في أقرب وقت.</p>
+    </div>
+  </div>
+
+  <!-- Cart Toast -->
+  <div class="toast cart-toast" id="cartToast">
+    <div class="toast-icon" style="color: var(--primary);"><i class="ph ph-shopping-cart-simple"></i></div>
+    <div class="toast-content">
+      <strong>تمت الإضافة!</strong>
+      <p>تم إضافة المنتج إلى السلة.</p>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
