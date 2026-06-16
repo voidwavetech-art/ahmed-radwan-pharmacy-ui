@@ -4,9 +4,52 @@
 let cart = [];
 
 // ========================
+// Product Icon/Color Map
+// ========================
+const CATEGORY_STYLE = {
+  pain:        { icon: 'ph-pill', color: 'var(--primary)' },
+  stomach:     { icon: 'ph-flask', color: 'var(--warning)' },
+  vitamins:    { icon: 'ph-leaf', color: 'var(--success)' },
+  skincare:    { icon: 'ph-drop', color: '#E879A0' },
+  antibiotics: { icon: 'ph-prescription', color: '#6366F1' },
+  allergy:     { icon: 'ph-flower-lotus', color: '#EC4899' }
+};
+
+function loadProducts() {
+  const stored = localStorage.getItem('pharmacy_products');
+  if (!stored) return; // keep the hardcoded HTML if no admin changes yet
+
+  const products = JSON.parse(stored);
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = products.map(p => {
+    const style = CATEGORY_STYLE[p.category] || CATEGORY_STYLE.pain;
+    const badgeHtml = p.badge
+      ? `<div class="product-badge" ${p.badge === 'متوفر' ? 'style="background-color: var(--success);"' : ''}>${p.badge}</div>`
+      : '';
+
+    return `
+      <div class="product-card" data-category="${p.category}">
+        ${badgeHtml}
+        <div class="product-icon" style="color: ${style.color};"><i class="ph ${style.icon}"></i></div>
+        <h4 class="font-en">${p.name}</h4>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-footer">
+          <span class="product-price font-en">${p.price} EGP</span>
+          <button class="btn-add" onclick="addToCart(this)"><i class="ph ph-shopping-cart-simple"></i></button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ========================
 // DOM Ready
 // ========================
 document.addEventListener('DOMContentLoaded', () => {
+  // Load products from localStorage (admin managed)
+  loadProducts();
   const navbar = document.querySelector('.navbar');
 
   // Sticky navbar shadow
@@ -90,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================
   const searchInput = document.getElementById('productSearch');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const productCards = document.querySelectorAll('.product-card');
   let activeFilter = 'all';
 
   filterBtns.forEach(btn => {
@@ -106,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function applyFilters() {
     const searchTerm = searchInput.value.toLowerCase().trim();
+    const productCards = document.querySelectorAll('.product-card');
     productCards.forEach(card => {
       const category = card.dataset.category;
       const text = card.textContent.toLowerCase();

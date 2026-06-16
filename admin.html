@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | صيدلية أحمد رضوان</title>
+  
+  <link rel="shortcut icon" href="./images/WhatsApp Image 2026-06-16 at 6.20.20 PM.jpeg" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Admin Navbar -->
+  <nav class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="logo">
+        <img src="images/WhatsApp Image 2026-06-16 at 6.20.20 PM.jpeg" alt="شعار صيدلية أحمد رضوان" class="logo-img">
+        <span>لوحة التحكم <span class="font-en text-primary" style="font-size: 0.9rem; font-weight: 500;">Admin Panel</span></span>
+      </a>
+      <a href="index.html" class="btn btn-outline" style="font-size: 0.9rem; padding: 0.5rem 1.25rem;">
+        <i class="ph ph-arrow-right"></i>
+        العودة للموقع
+      </a>
+    </div>
+  </nav>
+
+  <!-- Admin Content -->
+  <main class="admin-main">
+    <div class="container">
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="ph ph-pill"></i></div>
+          <div>
+            <div class="stat-value font-en" id="statTotal">0</div>
+            <div class="stat-label">إجمالي المنتجات</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background-color: rgba(245,158,11,0.1); color: var(--warning);"><i class="ph ph-tag"></i></div>
+          <div>
+            <div class="stat-value font-en" id="statCategories">0</div>
+            <div class="stat-label">الأقسام</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background-color: rgba(99,102,241,0.1); color: #6366F1;"><i class="ph ph-star"></i></div>
+          <div>
+            <div class="stat-value font-en" id="statBadged">0</div>
+            <div class="stat-label">منتجات مميزة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="admin-toolbar">
+        <h2><i class="ph ph-package"></i> إدارة المنتجات</h2>
+        <button class="btn btn-primary" id="addProductBtn" style="font-size: 0.95rem; padding: 0.65rem 1.5rem;">
+          <i class="ph ph-plus-circle"></i>
+          إضافة منتج جديد
+        </button>
+      </div>
+
+      <!-- Search & Filter -->
+      <div class="admin-filter-row">
+        <div class="search-box" style="flex: 1;">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="text" id="adminSearch" placeholder="ابحث عن منتج بالاسم...">
+        </div>
+        <select id="adminCategoryFilter" class="admin-select">
+          <option value="all">كل الأقسام</option>
+          <option value="pain">مسكنات</option>
+          <option value="stomach">معدة وهضم</option>
+          <option value="vitamins">فيتامينات</option>
+          <option value="skincare">عناية بالبشرة</option>
+          <option value="antibiotics">مضادات حيوية</option>
+          <option value="allergy">حساسية</option>
+        </select>
+      </div>
+
+      <!-- Products Table -->
+      <div class="admin-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>اسم المنتج</th>
+              <th>الوصف</th>
+              <th>القسم</th>
+              <th>السعر</th>
+              <th>شارة</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+        <div class="table-empty" id="tableEmpty" style="display: none;">
+          <i class="ph ph-magnifying-glass" style="font-size: 3rem; color: var(--neutral-100);"></i>
+          <p>لا توجد منتجات مطابقة</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Add/Edit Product Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="modal-icon">
+            <i class="ph ph-pill"></i>
+          </div>
+          <div>
+            <h3 id="modalTitle">إضافة منتج جديد</h3>
+            <p id="modalSubtitle">أدخل بيانات المنتج</p>
+          </div>
+        </div>
+        <button class="modal-close" id="closeProductModal">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <form id="productForm" class="modal-form">
+        <input type="hidden" id="editIndex" value="-1">
+        <div class="form-group">
+          <label for="prodName"><i class="ph ph-text-t"></i> اسم المنتج (بالإنجليزية)</label>
+          <input type="text" id="prodName" placeholder="e.g. Panadol Extra" required>
+        </div>
+        <div class="form-group">
+          <label for="prodDesc"><i class="ph ph-note-pencil"></i> الوصف (بالعربية)</label>
+          <input type="text" id="prodDesc" placeholder="مثال: مسكن للآلام وخافض للحرارة" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prodCategory"><i class="ph ph-squares-four"></i> القسم</label>
+            <select id="prodCategory" required>
+              <option value="" disabled selected>اختر القسم</option>
+              <option value="pain">مسكنات</option>
+              <option value="stomach">معدة وهضم</option>
+              <option value="vitamins">فيتامينات</option>
+              <option value="skincare">عناية بالبشرة</option>
+              <option value="antibiotics">مضادات حيوية</option>
+              <option value="allergy">حساسية</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="prodPrice"><i class="ph ph-currency-circle-dollar"></i> السعر (EGP)</label>
+            <input type="number" id="prodPrice" placeholder="0" min="1" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="prodBadge"><i class="ph ph-star"></i> شارة (اختياري)</label>
+          <input type="text" id="prodBadge" placeholder="مثال: الأكثر مبيعاً / متوفر / عرض">
+        </div>
+        <div class="form-row">
+          <button type="submit" class="btn btn-primary" style="flex: 1; padding: 0.875rem; font-size: 1rem;">
+            <i class="ph ph-check-circle"></i>
+            <span id="submitBtnText">إضافة المنتج</span>
+          </button>
+          <button type="button" class="btn btn-outline" id="cancelProductBtn" style="padding: 0.875rem; color: var(--neutral-600); border-color: var(--neutral-100);">
+            إلغاء
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal" style="max-width: 400px; text-align: center;">
+      <div style="padding: 2rem;">
+        <div style="width: 4rem; height: 4rem; border-radius: 50%; background: rgba(239,68,68,0.1); color: var(--error); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+          <i class="ph ph-trash"></i>
+        </div>
+        <h3 style="margin-bottom: 0.5rem;">حذف المنتج؟</h3>
+        <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">هل أنت متأكد من حذف <strong id="deleteProductName"></strong>؟ لا يمكن التراجع عن هذا الإجراء.</p>
+        <div class="flex gap-4" style="justify-content: center;">
+          <button class="btn btn-primary" id="confirmDeleteBtn" style="background-color: var(--error); padding: 0.75rem 2rem;">
+            <i class="ph ph-trash"></i> حذف
+          </button>
+          <button class="btn btn-outline" id="cancelDeleteBtn" style="padding: 0.75rem 2rem; color: var(--neutral-600); border-color: var(--neutral-100);">
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="adminToast">
+    <div class="toast-icon"><i class="ph ph-check-circle"></i></div>
+    <div class="toast-content">
+      <strong id="toastTitle">تم بنجاح!</strong>
+      <p id="toastMsg">تمت العملية بنجاح.</p>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
