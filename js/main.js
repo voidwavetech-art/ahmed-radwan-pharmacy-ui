@@ -33,7 +33,7 @@ function loadProducts() {
     const hiddenClass = i >= VISIBLE_COUNT ? ' extra-product' : '';
 
     const imgHtml = p.image
-      ? `<div class="product-img" style="background: ${style.bg};"><img src="${p.image}" alt="${p.name}"></div>`
+      ? `<div class="product-img has-image"><img src="${p.image}" alt="${p.name}"></div>`
       : `<div class="product-img" style="background: ${style.bg};"><i class="ph ${style.icon}" style="color: ${style.color};"></i></div>`;
 
     return `
