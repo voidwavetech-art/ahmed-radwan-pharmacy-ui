@@ -559,7 +559,11 @@ a {
   align-items: center;
   padding: 1.5rem 0;
   font-size: 0.85rem;
-  color: #BCBFC3
+  color: #BCBFC3;
+  p{
+  color: #BCBFC3;
+    
+  }
 }
 
 .developed-by {
