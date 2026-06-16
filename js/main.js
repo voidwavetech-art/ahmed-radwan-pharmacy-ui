@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="order-summary-item-price font-en">${item.price * item.qty} EGP</span>
       </div>
     `).join('');
-    summaryTotal.textContent = `${total} EGP`;
+    summaryTotal.textContent = `${total + 30} EGP`;
 
     // Open modal
     orderInfoModal.classList.add('active');
@@ -212,7 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
     message += `\n━━━━━━━━━━━━━━\n`;
     message += `📦 *المنتجات:*\n\n`;
     message += orderLines.join('\n');
-    message += `\n\n💰 *الإجمالي: ${total} EGP*`;
+    message += `\n\n🚚 *التوصيل: 30 EGP*`;
+    message += `\n💰 *الإجمالي: ${total + 30} EGP*`;
     message += `\n\nشكراً لتعاملكم معنا! 🌿`;
 
     window.open(`https://wa.me/201556728869?text=${encodeURIComponent(message)}`, '_blank');
@@ -329,7 +330,8 @@ function renderCart() {
 
   cartEmpty.style.display = 'none';
   cartFooter.style.display = 'flex';
-  cartTotal.textContent = `${totalPrice} EGP`;
+  document.getElementById('cartSubtotal').textContent = `${totalPrice} EGP`;
+  cartTotal.textContent = `${totalPrice + 30} EGP`;
 
   // Render items
   cartItems.innerHTML = cart.map((item, index) => `

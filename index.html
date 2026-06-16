@@ -569,7 +569,15 @@
       </div>
 
       <div class="cart-footer" id="cartFooter" style="display: none;">
-        <div class="cart-total">
+        <div class="cart-total" style="font-weight: 500; font-size: 0.9rem; color: var(--neutral-600);">
+          <span>المنتجات:</span>
+          <span class="font-en" id="cartSubtotal">0 EGP</span>
+        </div>
+        <div class="cart-total" style="font-weight: 500; font-size: 0.9rem; color: var(--neutral-600);">
+          <span>التوصيل:</span>
+          <span class="font-en">30 EGP</span>
+        </div>
+        <div class="cart-total" style="border-top: 2px solid var(--primary-light); padding-top: 0.75rem; margin-top: 0.25rem;">
           <span>الإجمالي:</span>
           <span class="cart-total-price font-en" id="cartTotal">0 EGP</span>
         </div>
@@ -628,6 +636,10 @@
         <div class="order-summary">
           <h4><i class="ph ph-receipt"></i> ملخص الطلب</h4>
           <div id="orderSummaryItems"></div>
+          <div class="order-summary-item" style="border-bottom: none;">
+            <span class="order-summary-item-name">🚚 رسوم التوصيل</span>
+            <span class="order-summary-item-price font-en">30 EGP</span>
+          </div>
           <div class="order-summary-total">
             <span>الإجمالي:</span>
             <span class="font-en" id="orderSummaryTotal">0 EGP</span>
