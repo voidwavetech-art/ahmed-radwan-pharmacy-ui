@@ -17,6 +17,32 @@
 </head>
 <body>
 
+  <!-- Login Gate -->
+  <div class="login-gate" id="loginGate">
+    <div class="login-card">
+      <div class="login-icon">
+        <i class="ph ph-lock-key"></i>
+      </div>
+      <h2>لوحة التحكم</h2>
+      <p>أدخل كلمة المرور للدخول</p>
+      <div class="login-input-wrapper" id="loginInputWrapper">
+        <i class="ph ph-password"></i>
+        <input type="password" id="adminPassword" placeholder="كلمة المرور" autofocus>
+      </div>
+      <div class="login-error" id="loginError">
+        <i class="ph ph-warning-circle"></i>
+        <span>كلمة المرور خاطئة! الدخول غير مسموح.</span>
+      </div>
+      <button class="btn btn-primary" id="loginBtn" style="width: 100%; padding: 0.875rem; font-size: 1rem;">
+        <i class="ph ph-sign-in"></i>
+        دخول
+      </button>
+    </div>
+  </div>
+
+  <!-- Admin Content (hidden until auth) -->
+  <div id="adminContent" style="display: none;">
+
   <!-- Admin Navbar -->
   <nav class="navbar">
     <div class="container flex justify-between items-center">
@@ -205,6 +231,50 @@
     </div>
   </div>
 
+  </div> <!-- /adminContent -->
+
+  <script>
+    // ========================
+    // Admin Authentication
+    // ========================
+    const ADMIN_PASS = '1318399';
+    const loginGate = document.getElementById('loginGate');
+    const adminContent = document.getElementById('adminContent');
+    const passwordInput = document.getElementById('adminPassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginError = document.getElementById('loginError');
+    const loginInputWrapper = document.getElementById('loginInputWrapper');
+
+    // Check if already authenticated this session
+    if (sessionStorage.getItem('admin_auth') === 'true') {
+      loginGate.style.display = 'none';
+      adminContent.style.display = 'block';
+    }
+
+    function attemptLogin() {
+      const value = passwordInput.value.trim();
+      if (value === ADMIN_PASS) {
+        sessionStorage.setItem('admin_auth', 'true');
+        loginGate.style.display = 'none';
+        adminContent.style.display = 'block';
+      } else {
+        loginError.classList.add('show');
+        loginInputWrapper.classList.add('error');
+        passwordInput.value = '';
+        passwordInput.focus();
+        setTimeout(() => {
+          loginInputWrapper.classList.remove('error');
+        }, 600);
+      }
+    }
+
+    loginBtn.addEventListener('click', attemptLogin);
+    passwordInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') attemptLogin();
+      // Hide error when typing again
+      loginError.classList.remove('show');
+    });
+  </script>
   <script src="js/admin.js"></script>
 </body>
 </html>
