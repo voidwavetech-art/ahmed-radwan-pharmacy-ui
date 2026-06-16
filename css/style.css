@@ -559,11 +559,12 @@ a {
   align-items: center;
   padding: 1.5rem 0;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: #BCBFC3
 }
 
 .developed-by {
   font-family: var(--font-english);
+  color:#BCBFC3;
 }
 
 .developer-name {
