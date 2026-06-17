@@ -411,7 +411,7 @@ a {
   }
 
   .map-container {
-    height: 250px;
+    display: none;
   }
 
   .footer-content {
