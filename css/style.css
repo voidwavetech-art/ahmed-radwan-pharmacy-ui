@@ -452,6 +452,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  width: 100%;
 }
 
 .contact-card {
@@ -464,6 +465,7 @@ a {
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--neutral-100);
   transition: all var(--transition-normal);
+  width: 100%;
 }
 
 .contact-card:hover {
