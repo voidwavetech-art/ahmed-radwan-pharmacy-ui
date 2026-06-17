@@ -345,95 +345,7 @@ a {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  /* Layout Adjustments */
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .hero, .features, .contact-section {
-    padding: 3rem 0;
-  }
-
-  /* Navbar */
-  .nav-links {
-    display: none; /* Hide simple desktop nav on mobile */
-  }
-
-  .navbar .container {
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  /* Hero Section */
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 2.5rem;
-  }
-  
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-
-  .hero-text p {
-    margin: 0 auto 1.5rem;
-    font-size: 1rem;
-  }
-
-  .hero-text .flex {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-text .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero-text .flex.items-center.gap-6 {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem !important;
-  }
-
-  .hero-image-backdrop {
-    display: none;
-  }
-
-  /* Footer & Contact */
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .map-container {
-    display: none;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .footer-brand {
-    justify-content: center;
-  }
-
-  .footer-contact li {
-    justify-content: center;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.75rem;
-  }
-}
+/* Moved to bottom media query */
 
 /* Contact Section */
 .contact-section {
@@ -1136,6 +1048,94 @@ a {
     right: 1rem;
     left: 1rem;
     bottom: 1rem;
+  }
+
+  /* Layout Adjustments (Moved from top) */
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .hero, .features, .contact-section {
+    padding: 3rem 0;
+  }
+
+  /* Navbar */
+  .nav-links {
+    display: none; /* Hide simple desktop nav on mobile */
+  }
+
+  .navbar .container {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  /* Hero Section */
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+  
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    margin: 0 auto 1.5rem;
+    font-size: 1rem;
+  }
+
+  .hero-text .flex {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-text .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-text .flex.items-center.gap-6 {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem !important;
+  }
+
+  .hero-image-backdrop {
+    display: none;
+  }
+
+  /* Footer & Contact */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .map-container {
+    display: none;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    justify-content: center;
+  }
+
+  .footer-contact li {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
   }
 }
 
