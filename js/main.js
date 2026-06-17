@@ -38,18 +38,15 @@ const DEFAULT_PRODUCTS = [
   { name: 'Avamys Nasal Spray', desc: 'أفاميس - بخاخ أنف لعلاج التهاب الأنف التحسسي', category: 'allergy', price: 80, badge: 'متوفر', image: 'images/avamys-nasal-spray-01724063287.webp' },
 ];
 
-function loadProducts() {
-  let stored = localStorage.getItem('pharmacy_products');
-  const version = localStorage.getItem('pharmacy_data_version');
+async function loadProducts() {
+  let dbData = await getDbData();
+  let products = dbData.products;
 
-  // Initialize or migrate to v1.2 if needed
-  if (!stored || version !== '1.2') {
-    localStorage.setItem('pharmacy_products', JSON.stringify(DEFAULT_PRODUCTS));
-    localStorage.setItem('pharmacy_data_version', '1.2');
-    stored = JSON.stringify(DEFAULT_PRODUCTS);
+  // Initialize DB if empty
+  if (!products) {
+    products = DEFAULT_PRODUCTS;
+    await saveDbProducts(products);
   }
-
-  const products = JSON.parse(stored);
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
 
@@ -349,21 +346,24 @@ document.addEventListener('DOMContentLoaded', () => {
   closeComplaintBtn.addEventListener('click', closeComplaintModal);
   complaintModal.addEventListener('click', (e) => { if (e.target === complaintModal) closeComplaintModal(); });
 
-  complaintForm.addEventListener('submit', (e) => {
+  complaintForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const type = document.getElementById('complaintType').value;
     const desc = document.getElementById('complaintDesc').value;
 
-    // Save to localStorage for admin to see
-    const complaints = JSON.parse(localStorage.getItem('pharmacy_complaints') || '[]');
+    // Save to Firebase for admin to see
+    const dbData = await getDbData();
+    const complaints = dbData.complaints || [];
+    
     complaints.push({
       type,
       desc,
       date: new Date().toLocaleString('ar-EG'),
       read: false
     });
-    localStorage.setItem('pharmacy_complaints', JSON.stringify(complaints));
+    
+    await saveDbComplaints(complaints);
 
     closeComplaintModal();
     complaintForm.reset();

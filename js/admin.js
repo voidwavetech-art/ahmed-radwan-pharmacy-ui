@@ -32,35 +32,29 @@ const CATEGORY_LABELS = {
 };
 
 // ========================
-// Load / Save Products
-// ========================
-function getProducts() {
-  const stored = localStorage.getItem('pharmacy_products');
-  const version = localStorage.getItem('pharmacy_data_version');
-  
-  if (!stored || version !== '1.2') {
-    localStorage.setItem('pharmacy_products', JSON.stringify(DEFAULT_PRODUCTS));
-    localStorage.setItem('pharmacy_data_version', '1.2');
-    return [...DEFAULT_PRODUCTS];
-  }
-  
-  return JSON.parse(stored);
-}
-
-function saveProducts(products) {
-  localStorage.setItem('pharmacy_products', JSON.stringify(products));
-}
-
-// ========================
-// DOM Ready
-// ========================
-let products = getProducts();
+let products = [];
+let complaints = [];
 let deleteIndex = -1;
 
-document.addEventListener('DOMContentLoaded', () => {
+async function initAdminData() {
+  const dbData = await getDbData();
+  products = dbData.products;
+  
+  // Initialize default products if none exist in Firebase
+  if (!products) {
+    products = DEFAULT_PRODUCTS;
+    await saveDbProducts(products);
+  }
+  
+  complaints = dbData.complaints || [];
+
   renderTable();
   updateStats();
   renderComplaints();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initAdminData();
 
   // ========================
   // Search & Filter
@@ -82,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================
   // Product Form Submit
   // ========================
-  document.getElementById('productForm').addEventListener('submit', (e) => {
+  document.getElementById('productForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const index = parseInt(document.getElementById('editIndex').value);
@@ -103,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showAdminToast('تم التعديل!', `تم تعديل "${product.name}" بنجاح.`);
     }
 
-    saveProducts(products);
+    await saveDbProducts(products);
     renderTable();
     updateStats();
     closeModal('productModal');
@@ -134,11 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================
   // Confirm Delete
   // ========================
-  document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+  document.getElementById('confirmDeleteBtn').addEventListener('click', async () => {
     if (deleteIndex >= 0 && deleteIndex < products.length) {
       const name = products[deleteIndex].name;
       products.splice(deleteIndex, 1);
-      saveProducts(products);
+      await saveDbProducts(products);
       renderTable();
       updateStats();
       closeModal('deleteModal');
@@ -269,12 +263,7 @@ function showAdminToast(title, msg) {
 // ========================
 // Complaints Management
 // ========================
-function getComplaints() {
-  return JSON.parse(localStorage.getItem('pharmacy_complaints') || '[]');
-}
-
 function renderComplaints() {
-  const complaints = getComplaints();
   const list = document.getElementById('complaintsList');
   const empty = document.getElementById('complaintsEmpty');
   const count = document.getElementById('complaintsCount');
@@ -295,8 +284,8 @@ function renderComplaints() {
         <i class="ph ph-megaphone"></i>
       </div>
       <div class="complaint-card-body">
-        <span class="complaint-card-type">${c.type}</span>
-        <p class="complaint-card-desc">${c.desc}</p>
+        <span class="complaint-card-type">${c.type || 'رسالة'}</span>
+        <p class="complaint-card-desc">${c.desc || c.message}</p>
         <span class="complaint-card-date"><i class="ph ph-clock"></i> ${c.date}</span>
       </div>
       <div class="complaint-card-actions">
@@ -307,25 +296,24 @@ function renderComplaints() {
   `).join('');
 }
 
-function markRead(index) {
-  const complaints = getComplaints();
+async function markRead(index) {
   complaints[index].read = true;
-  localStorage.setItem('pharmacy_complaints', JSON.stringify(complaints));
+  await saveDbComplaints(complaints);
   renderComplaints();
 }
 
-function deleteComplaint(index) {
-  const complaints = getComplaints();
+async function deleteComplaint(index) {
   complaints.splice(index, 1);
-  localStorage.setItem('pharmacy_complaints', JSON.stringify(complaints));
+  await saveDbComplaints(complaints);
   renderComplaints();
   showAdminToast('تم الحذف!', 'تم حذف الشكوى بنجاح.');
 }
 
 // Clear all complaints button
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('clearAllComplaints').addEventListener('click', () => {
-    localStorage.setItem('pharmacy_complaints', '[]');
+  document.getElementById('clearAllComplaints').addEventListener('click', async () => {
+    complaints = [];
+    await saveDbComplaints(complaints);
     renderComplaints();
     showAdminToast('تم الحذف!', 'تم حذف جميع الشكاوى.');
   });
