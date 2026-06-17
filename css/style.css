@@ -399,7 +399,7 @@ a {
   font-size: 1.25rem;
 }
 
-.contact-card > div {
+.contact-card > div:not(.contact-card-icon) {
   flex: 1;
   min-width: 0; /* Allows flex children to shrink below their content size */
 }
