@@ -485,6 +485,11 @@ a {
   font-size: 1.25rem;
 }
 
+.contact-card > div {
+  flex: 1;
+  min-width: 0; /* Allows flex children to shrink below their content size */
+}
+
 .contact-card h4 {
   font-size: 0.95rem;
   color: var(--neutral-800);
@@ -493,11 +498,15 @@ a {
 
 .contact-card p {
   font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .contact-link {
   color: var(--primary);
   font-size: 0.9rem;
+  display: block;
+  overflow-wrap: break-word;
+  word-break: break-word;
   font-weight: 500;
   transition: color var(--transition-fast);
 }
