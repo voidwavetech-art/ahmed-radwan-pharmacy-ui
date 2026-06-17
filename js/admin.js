@@ -2,24 +2,24 @@
 // Default Products Data
 // ========================
 const DEFAULT_PRODUCTS = [
-  { name: 'Panadol Extra', desc: 'بانادول إكسترا - مسكن للآلام وخافض للحرارة', category: 'pain', price: 25, badge: 'الأكثر مبيعاً', image: 'images/panadol-extra-tab-01762260859.webp' },
-  { name: 'Brufen 400mg', desc: 'بروفين 400 مجم - مضاد للالتهابات ومسكن قوي', category: 'pain', price: 30, badge: '', image: 'images/brufen-400mg-30-tablets-x0m6-01721234522.webp' },
-  { name: 'Cataflam 50mg', desc: 'كتافلام - مسكن سريع المفعول للآلام الحادة', category: 'pain', price: 45, badge: '', image: 'images/cataflam-50-mg-tab-01723552610.webp' },
-  { name: 'Antinal 200mg', desc: 'أنتينال - مطهر معوي لعلاج الإسهال والتقلصات', category: 'stomach', price: 35, badge: '', image: 'images/antinal-tablet-01668934670.webp' },
-  { name: 'Nexium 40mg', desc: 'نيكسيوم - لعلاج حموضة المعدة وارتجاع المريء', category: 'stomach', price: 120, badge: '', image: 'images/nexium-40-mg-28-tab-u0yk-01666699935.webp' },
-  { name: 'Motilium 10mg', desc: 'موتيليوم - لعلاج الغثيان والقيء وعسر الهضم', category: 'stomach', price: 40, badge: '', image: 'images/motilium-10-mg-40-tab-9z55-01666530255.webp' },
-  { name: 'Vitamin C 1000mg', desc: 'فيتامين سي - لتعزيز المناعة ومقاومة نزلات البرد', category: 'vitamins', price: 60, badge: 'متوفر', image: 'images/vitacid-c-plus-vitamin-c-zinc-12tab-jfh8-01673385089.webp' },
-  { name: 'Centrum Silver', desc: 'سنتروم سيلفر - فيتامينات متعددة للبالغين فوق 50', category: 'vitamins', price: 350, badge: '', image: 'images/centrum-silver-30tab-orxv-01764163062.webp' },
-  { name: 'Omega-3 Fish Oil', desc: 'أوميجا 3 - لصحة القلب والأوعية الدموية والمفاصل', category: 'vitamins', price: 180, badge: '', image: 'images/limitless-omega-3-30-capsule-cu7j-1643294585.webp' },
-  { name: 'CeraVe Moisturizer', desc: 'سيرافي - مرطب يومي للبشرة الجافة والحساسة', category: 'skincare', price: 450, badge: '', image: 'images/cerave-moisturizing-cream-177g-tube-mnco-01723386479.webp' },
-  { name: 'La Roche-Posay SPF50', desc: 'لاروش بوزيه - واقي شمس بعامل حماية عالي', category: 'skincare', price: 520, badge: '', image: 'images/anthelios-ultra-spf50-senza-profumo-50-ml-tpri-01648214702.webp' },
-  { name: 'Bioderma Sensibio', desc: 'بيوديرما - ماء ميسيلار لتنظيف البشرة الحساسة', category: 'skincare', price: 380, badge: '', image: 'images/bioderma-sensibio-h2o-hypoallergenic-makeup-removing-micellar-solution-for-sensitive-skin-parabens-freeuhde-01735401584.webp' },
-  { name: 'Augmentin 1g', desc: 'أوجمنتين - مضاد حيوي واسع المجال للعدوى البكتيرية', category: 'antibiotics', price: 95, badge: '', image: 'images/augmentin-antibiotic-1g-14tab-aoh8-1641396704.webp' },
-  { name: 'Flagyl 500mg', desc: 'فلاجيل - مضاد للبكتيريا والطفيليات والعدوى اللاهوائية', category: 'antibiotics', price: 28, badge: '', image: 'images/flagyl-500-tablet-01721656290.webp' },
-  { name: 'Zithromax 500mg', desc: 'زيثروماكس - مضاد حيوي لعلاج التهابات الجهاز التنفسي', category: 'antibiotics', price: 75, badge: '', image: 'images/zithromax-500mg-3tab-obkj-01667661122.webp' },
-  { name: 'Telfast 180mg', desc: 'تلفاست - لعلاج أعراض الحساسية والعطس والرشح', category: 'allergy', price: 55, badge: '', image: 'images/telfast-antihistamine-allergy-tablets-180-mg-20-tablets-01742218244.webp' },
-  { name: 'Zyrtec 10mg', desc: 'زيرتك - مضاد للحساسية سريع المفعول بدون نعاس', category: 'allergy', price: 65, badge: '', image: 'images/zyrtec-10-mg-20-tab-1642424493.webp' },
-  { name: 'Avamys Nasal Spray', desc: 'أفاميس - بخاخ أنف لعلاج التهاب الأنف التحسسي', category: 'allergy', price: 110, badge: '', image: 'images/avamys-nasal-spray-01724063287.webp' },
+  { name: 'Panadol Extra', desc: 'بانادول إكسترا - مسكن للآلام وخافض للحرارة', category: 'pain', price: 108, badge: 'متوفر', image: 'images/panadol-extra-tab-01762260859.webp' },
+  { name: 'Brufen 400mg', desc: 'بروفين 400 مجم - مضاد للالتهابات ومسكن قوي', category: 'pain', price: 78, badge: 'متوفر', image: 'images/brufen-400mg-30-tablets-x0m6-01721234522.webp' },
+  { name: 'Cataflam 50mg', desc: 'كتافلام - مسكن سريع المفعول للآلام الحادة', category: 'pain', price: 86, badge: 'متوفر', image: 'images/cataflam-50-mg-tab-01723552610.webp' },
+  { name: 'Antinal 200mg', desc: 'أنتينال - مطهر معوي لعلاج الإسهال والتقلصات', category: 'stomach', price: 52, badge: 'متوفر', image: 'images/antinal-tablet-01668934670.webp' },
+  { name: 'Nexium 40mg', desc: 'نيكسيوم - لعلاج حموضة المعدة وارتجاع المريء', category: 'stomach', price: 488, badge: 'متوفر', image: 'images/nexium-40-mg-28-tab-u0yk-01666699935.webp' },
+  { name: 'Motilium 10mg', desc: 'موتيليوم - لعلاج الغثيان والقيء وعسر الهضم', category: 'stomach', price: 100, badge: 'متوفر', image: 'images/motilium-10-mg-40-tab-9z55-01666530255.webp' },
+  { name: 'Vitamin C 1000mg', desc: 'فيتامين سي - لتعزيز المناعة ومقاومة نزلات البرد', category: 'vitamins', price: 54, badge: 'متوفر', image: 'images/vitacid-c-plus-vitamin-c-zinc-12tab-jfh8-01673385089.webp' },
+  { name: 'Centrum Silver', desc: 'سنتروم سيلفر - فيتامينات متعددة للبالغين فوق 50', category: 'vitamins', price: 300, badge: 'متوفر', image: 'images/centrum-silver-30tab-orxv-01764163062.webp' },
+  { name: 'Omega-3 Fish Oil', desc: 'أوميجا 3 - لصحة القلب والأوعية الدموية والمفاصل', category: 'vitamins', price: 230, badge: 'متوفر', image: 'images/limitless-omega-3-30-capsule-cu7j-1643294585.webp' },
+  { name: 'CeraVe Moisturizer', desc: 'سيرافي - مرطب يومي للبشرة الجافة والحساسة', category: 'skincare', price: 550, badge: 'متوفر', image: 'images/cerave-moisturizing-cream-177g-tube-mnco-01723386479.webp' },
+  { name: 'La Roche-Posay SPF50', desc: 'لاروش بوزيه - واقي شمس بعامل حماية عالي', category: 'skincare', price: 1070, badge: 'متوفر', image: 'images/anthelios-ultra-spf50-senza-profumo-50-ml-tpri-01648214702.webp' },
+  { name: 'Bioderma Sensibio', desc: 'بيوديرما - ماء ميسيلار لتنظيف البشرة الحساسة', category: 'skincare', price: 899, badge: 'متوفر', image: 'images/bioderma-sensibio-h2o-hypoallergenic-makeup-removing-micellar-solution-for-sensitive-skin-parabens-freeuhde-01735401584.webp' },
+  { name: 'Augmentin 1g', desc: 'أوجمنتين - مضاد حيوي واسع المجال للعدوى البكتيرية', category: 'antibiotics', price: 210, badge: 'متوفر', image: 'images/augmentin-antibiotic-1g-14tab-aoh8-1641396704.webp' },
+  { name: 'Flagyl 500mg', desc: 'فلاجيل - مضاد للبكتيريا والطفيليات والعدوى اللاهوائية', category: 'antibiotics', price: 34, badge: 'متوفر', image: 'images/flagyl-500-tablet-01721656290.webp' },
+  { name: 'Zithromax 500mg', desc: 'زيثروماكس - مضاد حيوي لعلاج التهابات الجهاز التنفسي', category: 'antibiotics', price: 160, badge: 'متوفر', image: 'images/zithromax-500mg-3tab-obkj-01667661122.webp' },
+  { name: 'Telfast 180mg', desc: 'تلفاست - لعلاج أعراض الحساسية والعطس والرشح', category: 'allergy', price: 116, badge: 'متوفر', image: 'images/telfast-antihistamine-allergy-tablets-180-mg-20-tablets-01742218244.webp' },
+  { name: 'Zyrtec 10mg', desc: 'زيرتك - مضاد للحساسية سريع المفعول بدون نعاس', category: 'allergy', price: 100, badge: 'متوفر', image: 'images/zyrtec-10-mg-20-tab-1642424493.webp' },
+  { name: 'Avamys Nasal Spray', desc: 'أفاميس - بخاخ أنف لعلاج التهاب الأنف التحسسي', category: 'allergy', price: 80, badge: 'متوفر', image: 'images/avamys-nasal-spray-01724063287.webp' },
 ];
 
 const CATEGORY_LABELS = {
@@ -38,9 +38,9 @@ function getProducts() {
   const stored = localStorage.getItem('pharmacy_products');
   const version = localStorage.getItem('pharmacy_data_version');
   
-  if (!stored || version !== '1.1') {
+  if (!stored || version !== '1.2') {
     localStorage.setItem('pharmacy_products', JSON.stringify(DEFAULT_PRODUCTS));
-    localStorage.setItem('pharmacy_data_version', '1.1');
+    localStorage.setItem('pharmacy_data_version', '1.2');
     return [...DEFAULT_PRODUCTS];
   }
   
